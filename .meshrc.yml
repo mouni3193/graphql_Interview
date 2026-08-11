@@ -1,0 +1,8 @@
+# GraphQL Mesh configuration for NASA NEO Feed
+sources:
+  - name: NASA_NEO
+    handler:
+      json-schema:
+        url: "https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=DEMO_KEY"
+        defaultQueryParams:
+          api_key: "DEMO_KEY"

@@ -2,11 +2,25 @@
   "jack": {
     "street": "123 Street St.",
     "city": "Sometown",
-    "zipcode": "43215"
+    "zipcode": "43215",
+    "state": "CA"
   },
   "jill": {
     "street": "234 Other St",
     "city": "Townville",
-    "zipcode": "32145"
+    "zipcode": "32145",
+    "state": "NY"
+  },
+  "alice": {
+    "street": "789 New Ave",
+    "city": "Metrocity",
+    "zipcode": "98765",
+    "state": "WA"
+  },
+  "bob": {
+    "street": "456 Old Rd",
+    "city": "Oldtown",
+    "zipcode": "54321",
+    "state": "TX"
   }
 }

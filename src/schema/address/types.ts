@@ -2,6 +2,7 @@ export type Address = {
   street: string;
   city: string;
   zipcode: string;
+  state: string;
 };
 
 export type Addresses = {
@@ -10,4 +11,11 @@ export type Addresses = {
 
 export type Args = {
   username: string;
+};
+
+export type AddressInput = {
+  street: string;
+  city: string;
+  zipcode: string;
+  state: string;
 };

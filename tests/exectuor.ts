@@ -9,5 +9,12 @@ const schema = genSchema();
 const yoga = createYoga({ schema, plugins });
 
 export const executor = buildHTTPExecutor({
-  fetch: yoga.fetch,
+  fetch: yoga.fetch.bind(yoga),
+  headers: (request) => {
+    const extensionHeaders = (request as any).extensions?.headers;
+    if (extensionHeaders != null) {
+      return extensionHeaders as Record<string, string>;
+    }
+    return { client: 'test-client' };
+  },
 });
