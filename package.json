@@ -11,6 +11,10 @@
     "@envelop/parser-cache": "^9.0.0",
     "@envelop/response-cache": "^8.0.0",
     "@envelop/validation-cache": "^9.0.0",
+    "@graphql-mesh/cli": "^0.101.2",
+    "@graphql-mesh/json-schema": "^0.110.1",
+    "@graphql-mesh/config": "^0.109.1",
+    "@graphql-mesh/runtime": "^0.107.1",
     "@graphql-tools/executor-http": "^1.1.6",
     "@graphql-tools/load-files": "^7.0.1",
     "@graphql-tools/merge": "^9.0.24",
@@ -22,8 +26,6 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
-    "@graphql-mesh/cli": "^0.101.2",
-    "@graphql-mesh/json-schema": "^0.110.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.15.17",
     "@typescript-eslint/eslint-plugin": "8.41.0",

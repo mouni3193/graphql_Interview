@@ -15,7 +15,7 @@ sources:
               end_date:
                 type: string
               api_key: 
-              type: string
+                type: string
 
 documents:
   - ./src/neo/operations.graphql
