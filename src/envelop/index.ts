@@ -10,8 +10,8 @@ import { ContextType } from '../types';
 const plugins: Plugin<ContextType>[] = [
   useEngine({ parse, validate, specifiedRules, execute, subscribe }) as Plugin<ContextType>,
   buildHeaders(),
-  requireClientHeader(),
   useLogger(),
+  requireClientHeader(),
   useParserCache() as Plugin<ContextType>,
   useValidationCache() as Plugin<ContextType>,
 ];
