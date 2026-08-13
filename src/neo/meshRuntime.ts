@@ -1,13 +1,26 @@
-export const callNeoFeed = async (startDate: string, endDate: string) => {
-  const url = new URL("https://api.nasa.gov/neo/rest/v1/feed");
-  url.searchParams.set("start_date", startDate);
-  url.searchParams.set("end_date", endDate);
-  url.searchParams.set("api_key", "DEMO_KEY");
+import { getMeshSDK } from "../../.mesh";
 
-  const res = await fetch(url.toString());
-  if (!res.ok) 
-    throw new Error(`NASA API error: ${res.status}`);
-  return res.json();
+const sdk = getMeshSDK();
+
+/**
+ * Calls the NASA NEO Feed endpoint via the generated Mesh SDK.
+ * Returns the raw NASA API response (un-transformed).
+ */
+export const callNeoFeed = async (
+  startDate: string,
+  endDate: string
+): Promise<any> => {
+  const result = await sdk.GetNeoFeed({
+    start_date: startDate,
+    end_date: endDate,
+    api_key: "DEMO_KEY",
+  });
+
+  if (!result.getNeoFeed) {
+    throw new Error("No data returned from NASA NEO Feed");
+  }
+
+  return result.getNeoFeed;
 };
 
 export default { callNeoFeed };

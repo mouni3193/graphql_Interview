@@ -10,7 +10,7 @@ export const readAddresses = async (): Promise<Addresses> => {
 };
 
 export const writeAddresses = async (addresses: Addresses): Promise<void> => {
-  const tmp = `${ADDRESSES_PATH}.tmp`;
+  const tmp = `${ADDRESSES_PATH}.${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   await fs.writeFile(tmp, JSON.stringify(addresses, null, 2), 'utf8');
   await fs.rename(tmp, ADDRESSES_PATH);
 };

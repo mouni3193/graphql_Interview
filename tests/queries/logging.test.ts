@@ -1,7 +1,23 @@
 import { parse } from 'graphql';
+import { infoMock, resetMocks } from '../winstonMock';
+
+jest.mock('winston', () => {
+  const winstonMock = require('../winstonMock');
+  return {
+    __esModule: true,
+    default: winstonMock.default,
+    format: winstonMock.format,
+    transports: winstonMock.transports,
+  };
+});
+
 import { executor } from '../exectuor';
 
 describe('Ticket 4 & 5: Logging with requestId and client', () => {
+  beforeEach(() => {
+    resetMocks();
+  });
+
   test('Ticket 4: requestId is generated and returned in response metadata', async () => {
     const query = `
       query GetAddress($username: String!) {
@@ -62,7 +78,10 @@ describe('Ticket 4 & 5: Logging with requestId and client', () => {
     expect(result.data).toBeDefined();
     expect(result.data.createAddress).toBeDefined();
     expect(result.data.createAddress.street).toBe('500 Log St');
-    
+    expect(result.metadata?.requestId).toBeDefined();
+    expect(infoMock).toHaveBeenCalled();
+    expect(infoMock.mock.calls.every(([, meta]) => meta?.client === testClient)).toBe(true);
+    expect(infoMock.mock.calls.some(([, meta]) => meta?.requestId === result.metadata?.requestId)).toBe(true);
   });
 
   test('Ticket 4 & 5: requestId is unique per request and client is passed through', async () => {
@@ -120,6 +139,8 @@ describe('Ticket 4 & 5: Logging with requestId and client', () => {
     } as any) as any;
 
     expect(result.metadata?.requestId).toBeDefined();
+    expect(infoMock).toHaveBeenCalled();
+    expect(infoMock.mock.calls.every(([, meta]) => meta?.requestId === result.metadata?.requestId)).toBe(true);
   });
 
   test('Ticket 5: client header appears in logs (manual verification via console output)', async () => {
@@ -154,5 +175,8 @@ describe('Ticket 4 & 5: Logging with requestId and client', () => {
 
     expect(result.data?.createAddress).toBeDefined();
     expect(result.metadata?.requestId).toBeDefined();
+    expect(infoMock).toHaveBeenCalled();
+    expect(infoMock.mock.calls.every(([, meta]) => meta?.client === testClient)).toBe(true);
+    expect(infoMock.mock.calls.some(([, meta]) => meta?.requestId === result.metadata?.requestId)).toBe(true);
   });
 });

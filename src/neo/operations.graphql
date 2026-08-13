@@ -1,0 +1,6 @@
+query GetNeoFeed($start_date: String, $end_date: String, $api_key: String) {
+  getNeoFeed(start_date: $start_date, end_date: $end_date, api_key: $api_key) {
+    element_count
+    near_earth_objects
+  }
+}

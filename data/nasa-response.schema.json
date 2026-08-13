@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "title":"NeoFeedRawResponse",
+  "properties": {
+    "element_count": {
+      "type": "integer"
+    },
+    "near_earth_objects": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "is_potentially_hazardous_asteroid": {
+              "type": "boolean"
+            },
+            "estimated_diameter": {
+              "type": "object",
+              "properties": {
+                "kilometers": {
+                  "type": "object",
+                  "properties": {
+                    "estimated_diameter_min": {
+                      "type": "number"
+                    },
+                    "estimated_diameter_max": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "close_approach_data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "close_approach_date": {
+                    "type": "string"
+                  },
+                  "relative_velocity": {
+                    "type": "object",
+                    "properties": {
+                      "kilometers_per_hour": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "miss_distance": {
+                    "type": "object",
+                    "properties": {
+                      "kilometers": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
