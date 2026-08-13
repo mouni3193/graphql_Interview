@@ -1,4 +1,4 @@
-import {callNeoFeed } from "./meshRuntime";
+import { callNeoFeed } from "./meshRuntime";
 
 type NEOFeed ={
   elementCount: number;
@@ -10,7 +10,7 @@ type NEOFeed ={
   estimatedDiameterMaxKm: number; 
   closeApproachDate: string; 
   relativeVelocityKph: string; 
-  missdistance: string;
+  missDistanceKm: string;
   }>;
 };
 
